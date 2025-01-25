@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentines Day</title>
+  <title>Valentine's Day</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     .gradient-background {
       background: rgb(255, 208, 229);
@@ -57,46 +58,39 @@
     </div>
   </div>
 
-  <script type="module">
-    // Check if canvas-confetti is loaded
-    if (typeof confetti === "undefined") {
-      console.error("Confetti library failed to load.");
-    } else {
-      const yesButton = document.getElementById('yesButton');
-      const noButton = document.getElementById('noButton');
-      const valentineQuestion = document.getElementById('valentineQuestion');
-      const responseButtons = document.getElementById('responseButtons');
-      const loveMessage = document.getElementById('loveMessage');
-    
-      let noClickCount = 0;
-      let buttonHeight = 48; // Starting height in pixels
-      let buttonWidth = 80;
-      let fontSize = 20; // Starting font size in pixels
+  <script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const valentineQuestion = document.getElementById('valentineQuestion');
+    const responseButtons = document.getElementById('responseButtons');
+    const loveMessage = document.getElementById('loveMessage');
+  
+    let noClickCount = 0;
+    let buttonHeight = 48; // Starting height in pixels
+    let buttonWidth = 80;
+    let fontSize = 20; // Starting font size in pixels
 
-      // Handle 'No' button click
-      noButton.addEventListener('click', function() {
-        if (noClickCount < 5) {
-          noClickCount++;
-          buttonHeight += 35; // Increase height by 5px on each click
-          buttonWidth += 35;
-          fontSize += 25; // Increase font size by 1px on each click
-          yesButton.style.height = `${buttonHeight}px`; // Update button height
-          yesButton.style.width = `${buttonWidth}px`;
-          yesButton.style.fontSize = `${fontSize}px`; // Update font size
-          if (noClickCount < 6) {
-            noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
-          }
-        }
-      });
-    
-      // Handle 'Yes' button click
-      yesButton.addEventListener('click', () => {
-        valentineQuestion.textContent = "Yayyy!! :3"; // Change the question text
-        responseButtons.style.display = 'none'; // Hide both buttons
-        loveMessage.classList.remove('hidden'); // Show the love message
-        confetti(); // Trigger confetti animation
-      });
-    }
+    // Handle 'No' button click
+    noButton.addEventListener('click', function() {
+      if (noClickCount < 5) {
+        noClickCount++;
+        buttonHeight += 35; // Increase height by 35px on each click
+        buttonWidth += 35;
+        fontSize += 25; // Increase font size by 25px on each click
+        yesButton.style.height = `${buttonHeight}px`; // Update button height
+        yesButton.style.width = `${buttonWidth}px`;
+        yesButton.style.fontSize = `${fontSize}px`; // Update font size
+        noButton.textContent = ["No", "Are you sure?", "Pookie please", "Don't do this to me :(", "You're breaking my heart", "I'm gonna cry..."][noClickCount];
+      }
+    });
+  
+    // Handle 'Yes' button click
+    yesButton.addEventListener('click', () => {
+      valentineQuestion.textContent = "Yayyy!! :3"; // Change the question text
+      responseButtons.style.display = 'none'; // Hide both buttons
+      loveMessage.classList.remove('hidden'); // Show the love message
+      confetti(); // Trigger confetti animation
+    });
   </script>  
 </body>
 </html>
